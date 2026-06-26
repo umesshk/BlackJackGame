@@ -20,6 +20,10 @@ func (h Hand) String() string {
 
 }
 
+func (h Hand) DealerString() string {
+	return h[0].String() + ",**HIDDEN**"
+}
+
 func DrawCards(cards []deck.Card) (deck.Card, []deck.Card) {
 	return cards[0], cards[1:]
 
@@ -42,5 +46,5 @@ func InitGame() {
 	}
 
 	fmt.Println("Player : ", player)
-	fmt.Println("Dealer : ", dealer)
+	fmt.Println("Dealer : ", dealer.DealerString())
 }
