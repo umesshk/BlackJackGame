@@ -20,24 +20,27 @@ func (h Hand) String() string {
 
 }
 
+func DrawCards(cards []deck.Card) (deck.Card, []deck.Card) {
+	return cards[0], cards[1:]
+
+}
+
 func InitGame() {
 
 	cards := deck.CreateDeck(deck.Deck(2), deck.Shuffle)
 
 	var card deck.Card
 
-	var p1, p2 Hand
+	var player, dealer Hand
 
 	for i := 0; i < 2; i++ {
-		card, cards = cards[0], cards[1:]
-		p1 = append(p1, card)
-
-		card, cards = cards[0], cards[1:]
-		p2 = append(p2, card)
+		for _, hand := range []*Hand{&player, &dealer} {
+			card, cards = DrawCards(cards)
+			*hand = append(*hand, card)
+		}
 
 	}
 
-	fmt.Println(p1)
-	fmt.Println(p2)
-
+	fmt.Println("Player : ", player)
+	fmt.Println("Dealer : ", dealer)
 }
