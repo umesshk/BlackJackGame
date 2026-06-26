@@ -2,11 +2,23 @@ package blackjack
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/umesshk/CardDeck/deck"
 )
 
 type Hand []deck.Card
+
+func (h Hand) String() string {
+	str := make([]string, len(h))
+
+	for i := range h {
+		str[i] = h[i].String()
+	}
+
+	return strings.Join(str, ", ")
+
+}
 
 func InitGame() {
 
