@@ -1,5 +1,0 @@
-package blackjack
-
-func StartGame() {
-
-}

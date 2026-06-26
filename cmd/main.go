@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	bj "github.com/umesshk/BlackJackGame/blackjack"
+)
 
 func main() {
-	fmt.Print("Hlloe world ")
+
+	fmt.Println("----- Welcome to Black Jack Game -----")
+
+	bj.InitGame()
+
 }
