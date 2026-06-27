@@ -45,6 +45,9 @@ func InitGame() {
 
 	}
 
+	var input string
+	fmt.Scanf("%s\n", &input)
+
 	fmt.Println("Player : ", player)
 	fmt.Println("Dealer : ", dealer.DealerString())
 }
