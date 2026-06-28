@@ -29,6 +29,36 @@ func DrawCards(cards []deck.Card) (deck.Card, []deck.Card) {
 
 }
 
+func (h Hand) Score() int {
+
+	minScore := h.MinScore()
+
+	if minScore > 11 {
+		return minScore
+	}
+
+	for _, c := range h {
+		if c.Rank == deck.Ace {
+			return minScore + 10
+		}
+	}
+
+	return minScore
+
+}
+
+func (h Hand) MinScore() int {
+
+	score := 0
+
+	for _, c := range h {
+		score += min(int(c.Rank), 10)
+	}
+
+	return score
+
+}
+
 func InitGame() {
 
 	cards := deck.CreateDeck(deck.Deck(2), deck.Shuffle)
@@ -46,8 +76,24 @@ func InitGame() {
 	}
 
 	var input string
-	fmt.Scanf("%s\n", &input)
+
+	if input != "s" {
+		fmt.Println("Dealer : ", dealer.DealerString())
+		fmt.Println("Player : ", player)
+
+		fmt.Println("What would you like to do (h)it or (s)tand ? ")
+
+		fmt.Scanf("%s\n", &input)
+
+		switch input {
+		case "h":
+			card, cards = DrawCards(cards)
+			player = append(player, card)
+
+		}
+	}
 
 	fmt.Println("Player : ", player)
+	fmt.Println("Player Score : ", player.Score())
 	fmt.Println("Dealer : ", dealer.DealerString())
 }
