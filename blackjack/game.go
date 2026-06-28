@@ -94,10 +94,17 @@ func InitGame() {
 
 	}
 
+	for dealer.Score() <= 16 || (dealer.Score() == 17 && dealer.MinScore() != 17) {
+		card, cards = DrawCards(cards)
+		dealer = append(dealer, card)
+
+	}
+
 	pScore, dScore := player.Score(), dealer.Score()
 
 	fmt.Println("Player : ", player)
 	fmt.Println("Player Score : ", pScore)
+	fmt.Println("Dealer : ", dealer)
 	fmt.Println("Dealer : ", dScore)
 
 	switch {
