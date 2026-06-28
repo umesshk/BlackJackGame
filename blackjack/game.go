@@ -77,7 +77,7 @@ func InitGame() {
 
 	var input string
 
-	if input != "s" {
+	for input != "s" {
 		fmt.Println("Dealer : ", dealer.DealerString())
 		fmt.Println("Player : ", player)
 
@@ -91,9 +91,30 @@ func InitGame() {
 			player = append(player, card)
 
 		}
+
 	}
 
+	pScore, dScore := player.Score(), dealer.Score()
+
 	fmt.Println("Player : ", player)
-	fmt.Println("Player Score : ", player.Score())
-	fmt.Println("Dealer : ", dealer.DealerString())
+	fmt.Println("Player Score : ", pScore)
+	fmt.Println("Dealer : ", dScore)
+
+	switch {
+	case pScore > 21:
+		fmt.Println("You Busted")
+
+	case dScore > 21:
+		fmt.Println("Dealer Busted")
+
+	case pScore > dScore:
+		fmt.Println("You Win!!")
+
+	case dScore > pScore:
+		fmt.Println("You Lose!!")
+
+	default:
+		fmt.Println("Draw")
+	}
+
 }
