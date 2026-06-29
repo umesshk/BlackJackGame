@@ -67,7 +67,7 @@ func InitGame() {
 
 	var player, dealer Hand
 
-	for i := 0; i < 2; i++ {
+	for range 2 {
 		for _, hand := range []*Hand{&player, &dealer} {
 			card, cards = DrawCards(cards)
 			*hand = append(*hand, card)
