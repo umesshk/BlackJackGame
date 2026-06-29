@@ -11,6 +11,25 @@ type GameSate struct {
 	Dealer Hand
 }
 
+type State int
+
+const (
+	StatePlayerTurn State = iota
+	StateDealerTurn
+	StateHandOver
+)
+
+func (gs *GameSate) CurrentPlayer() *Hand {
+	switch gs.State {
+	case int(StatePlayerTurn):
+		return &gs.Player
+	case int(StateDealerTurn):
+		return &gs.Dealer
+	default:
+		panic("Not a Valid State")
+	}
+}
+
 func Clone(gs GameSate) GameSate {
 	ret := GameSate{
 		Deck:   make([]deck.Card, len(gs.Deck)),
