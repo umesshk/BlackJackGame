@@ -147,41 +147,34 @@ func InitGame() {
 	var gs GameSate
 
 	gs = Shuffle(gs)
-	gs = Deal(gs)
 
-	var input string
+	for range 10 {
+		gs = Deal(gs)
 
-	for gs.State == int(StatePlayerTurn) {
+		var input string
 
-		fmt.Println("Dealer : ", gs.Dealer.DealerString())
-		fmt.Println("Player : ", gs.Player)
+		for gs.State == int(StatePlayerTurn) {
 
-		fmt.Println("What would you like to do (h)it or (s)tand ? ")
+			fmt.Println("Dealer : ", gs.Dealer.DealerString())
+			fmt.Println("Player : ", gs.Player)
 
-		fmt.Scanf("%s\n", &input)
+			fmt.Println("What would you like to do (h)it or (s)tand ? ")
 
-		switch input {
-		case "h":
-			gs = Hit(gs)
+			fmt.Scanf("%s\n", &input)
 
-		case "s":
-			gs = Stand(gs)
+			switch input {
+			case "h":
+				gs = Hit(gs)
 
-		default:
-			fmt.Println("Invalid Case")
+			case "s":
+				gs = Stand(gs)
+
+			default:
+				fmt.Println("Invalid Case")
+			}
+
 		}
 
+		gs = EndGame(gs)
 	}
-
-	// for gs.State == int(StateDealerTurn) {
-	// 	if gs.Dealer.Score() <= 16 || (gs.Dealer.Score() == 17 && gs.Dealer.MinScore() != 17) {
-	// 		var card deck.Card
-	// 		card, gs.Deck = DrawCards(gs.Deck)
-	// 		gs.Dealer = append(gs.Dealer, card)
-	//
-	// 	}
-	// }
-	//
-	gs = EndGame(gs)
-
 }
